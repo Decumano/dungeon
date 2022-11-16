@@ -1,0 +1,28 @@
+Dungeon:
+	- Close and open doors in game
+		In menu of movement create an option to close doors
+
+	- Elemental weapons, armors and enemies.
+	- Add levels to the dungeon
+	- Diverse kinds of potions
+	- Create boss
+	- Add table of predefined weapons and armors to use
+	- Create different kind of enemies ("Goblins, trolls or orcs for example")
+	- Try to add magic
+	- Graphic improvement ("That is not needed the cmd in order to play")
+	- Day/night cycle
+	- 2D Models for the graphic improvement
+	- Read the 2D models in order to print them
+	- Add chests to find weapons and armors as well as enemies that disguise as chests
+	- Implement RPG combat like pokemon
+	
+	
+	- ¿Randomize create dungeon?
+		Create a file with a random to generate a dungeon
+		Create a function that loads a dungeon randomized
+		Possible algorithm with seed to generate dungeon
+
+
+
+Remember:
+	- Repair stellaris, install ToT and play some time.

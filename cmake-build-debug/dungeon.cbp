@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="dungeon"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dungeon">
+				<Option output="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/dungeon.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 dungeon"/>
+					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dungeon/fast">
+				<Option output="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/dungeon.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 dungeon/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/ACER/Desktop/dungeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/common.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/dungeon.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/dungeon_utils.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/game.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/menu.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/room.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/state.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/utils.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/headers/wall.h">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/dungeon.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/dungeon_utils.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/game.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/main.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/menu.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/room.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/state.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/utils.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/src/sources/wall.c">
+			<Option target="dungeon"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ACER/Desktop/dungeon/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

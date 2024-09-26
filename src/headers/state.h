@@ -7,6 +7,10 @@
 
 #include "dungeon.h"
 
+#define OPTION_ATTACK '1'
+#define OPTION_HEAL '2'
+#define OPTION_FLEE '3'
+
 typedef struct _step {
     char direction;
     Position pos;
@@ -21,6 +25,9 @@ typedef struct {
     int hp;
     Position current;
     int damage;
+    int acc;
+    short inFrontDoor1turn;
+    char lastDir;
 }Enemy;
 
 typedef struct {
@@ -29,7 +36,9 @@ typedef struct {
     Path path;
     Position current;
     int hp;
+    int healthPotions;
     int damage;
+    int agility;
     Enemy* enemies;
     int numEn;
 } State;

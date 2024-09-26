@@ -16,6 +16,7 @@
 #define PATH 'P'
 #define CHECK_TRAP 'C'
 #define CHECK_DOOR 'D'
+#define HEAL 'H'
 #define WALLS 4
 
 typedef struct {

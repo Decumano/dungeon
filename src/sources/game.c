@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "../headers/utils.h"
 #include "../headers/state.h"
@@ -48,7 +49,7 @@ char choose_direction(Room* room) {
         option = read_char_option("There are no doors! Press Q for quit and try again...\n");
 
     } else {
-        option = read_char_option("Which direction do you want to go? (N/E/S/W)\nPress C to check traps\nPress D to open and close doors\nPress P for showing path, Q for quit\n");
+        option = toupper(read_char_option("Which direction do you want to go? (N/E/S/W)\nPress H to use a potion\nPress C to check traps\nPress D to open and close doors\nPress P for showing path, Q for quit\n"));
     }
 
     return option;
@@ -101,7 +102,7 @@ void do_move(State* state, char direction) {
 }
 
 int check_doors(State* state){
-    char option = read_char_option("In which direction do you wish to check?(N/E/S/W)\n");
+    char option = toupper(read_char_option("In which direction do you wish to check?(N/E/S/W)\n"));
     if (is_valid_direction_option(option) == TRUE) {
         Room* current_room = get_current_room(state);
         int move_result = move(state, option, FALSE);
@@ -110,7 +111,7 @@ int check_doors(State* state){
                 if (has_open_door(get_wall(get_current_room(state), rever_direction(option)))) {
                     printf("There is an open door in %c direction\n", option);
                     while (TRUE) {
-                        char option2 = read_char_option("Do you want to close it? (Y/N)\n");
+                        char option2 = toupper(read_char_option("Do you want to close it? (Y/N)\n"));
                         if (option2 == 'Y') {
                             close_door(get_wall(get_current_room(state), rever_direction(option)));
                             close_door(get_wall(current_room, option));
@@ -124,7 +125,7 @@ int check_doors(State* state){
                 }else{
                         printf("There is a closed door in %c direction\n", option);
                         while (TRUE) {
-                            char option2 = read_char_option("Do you want to open it? (Y/N)\n");
+                            char option2 = toupper(read_char_option("Do you want to open it? (Y/N)\n"));
                             if (option2 == 'Y') {
                                 open_door(get_wall(get_current_room(state), rever_direction(option)));
                                 open_door(get_wall(current_room, option));
@@ -162,7 +163,7 @@ int check_doors(State* state){
 }
 
 int check_traps(State* state){
-    char option = read_char_option("In which direction do you wish to check?(N/E/S/W)\n");
+    char option = toupper(read_char_option("In which direction do you wish to check?(N/E/S/W)\n"));
     if (is_valid_direction_option(option) == TRUE) {
         int move_result = move(state, option, FALSE);
         switch (move_result) {
@@ -170,7 +171,7 @@ int check_traps(State* state){
                 if (has_active_trap(get_current_room(state))) {
                     printf("There is a trap in %c direction\n", option);
                     while (TRUE) {
-                        char option2 = read_char_option("Do you want to deactivate it? (Y/N)\n");
+                        char option2 = toupper(read_char_option("Do you want to deactivate it? (Y/N)\n"));
                         if (option2 == 'Y') {
                             deactivate_trap(get_current_room(state));
                             break;
@@ -249,11 +250,11 @@ void start_game(Dungeon* dungeon) {
     int quit = FALSE;
     choose_difficulty(&state, dungeon);
     printf("Starting game...\n\n");
-    while (quit == FALSE) {
+    Room* current_room = get_current_room(&state);
+    Room** monster_room = (Room**)malloc(state.numEn*sizeof(Room*));
+    int* hp = (int*)malloc(state.numEn*sizeof(int));
 
-        Room* current_room = get_current_room(&state);
-        Room** monster_room = (Room**)malloc(state.numEn*sizeof(Room*));
-        int* hp = (int*)malloc(state.numEn*sizeof(int));
+    while (quit == FALSE) {
         for (int i = 0; i < state.numEn; i++){
             monster_room[i] = get_room_at_position(state.dun, state.enemies[i].current);
             hp[i] = state.enemies[i].hp;
@@ -265,9 +266,9 @@ void start_game(Dungeon* dungeon) {
 
         } else {
             draw_dungeon(stdout, dungeon, current_room, monster_room, state.numEn, TRUE, TRUE, hp);
-            printf("\nYour current health is: %d", state.hp);
+            printf("\nYour current health is: %d\nYou have %d potions", state.hp, state.healthPotions);
 
-            char direction = choose_direction(current_room);
+            char direction = toupper(choose_direction(current_room));
 
             if (is_valid_direction_option(direction) == TRUE) {
                 do_move(&state, direction);
@@ -287,6 +288,9 @@ void start_game(Dungeon* dungeon) {
             } else if (direction == CHECK_DOOR){
                 check_doors(&state);
 
+            } else if (direction == HEAL){
+                state.healthPotions--;
+                state.hp += 9;
             } else {
                 printf("Invalid option! Try again...\n");
             }

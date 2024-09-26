@@ -56,12 +56,9 @@ char* get_wall_label(Wall *wall) {
  * Pre: The wall needs to be different from NULL.
  * Post: Returns TRUE or FALSE for the has_door condition.
  */
+#include "stdio.h"
 int has_door(Wall *wall) {
-    if (wall->has_door){
-        return TRUE;
-    }else{
-        return FALSE;
-    }
+    return wall->has_door;
 }
 
 /**
@@ -152,11 +149,7 @@ int close_door(Wall* wall) {
  * Post: Returns TRUE is wall is set to is_open, and FALSE otherwise.
  */
 int has_open_door(Wall *wall) {
-    if (has_door(wall) && wall->is_open){
-        return TRUE;
-    }else{
-        return FALSE;
-    }
+    return (has_door(wall) && wall->is_open);
 }
 
 /**
@@ -168,11 +161,7 @@ int has_open_door(Wall *wall) {
  * Post: Returns TRUE is wall is set to is_exit, and FALSE otherwise.
  */
 int has_exit_door(Wall *wall) {
-    if (has_door(wall) && wall->is_exit){
-        return TRUE;
-    }else{
-        return FALSE;
-    }
+    return (has_door(wall) && wall->is_exit);
 }
 
 /**

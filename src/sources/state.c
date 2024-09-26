@@ -27,7 +27,9 @@ void init_state(State* state, Dungeon* dungeon) {
     state->current = dungeon->initialPos;
     mark_visited(&state->dun->map[state->current.row][state->current.column]);
     state->hp = 20;
-    state->damage = 3;
+    state->healthPotions = 5;
+    state->agility = 4;
+    state->damage = 5;
     state->numEn = 1;
     state->enemies = (Enemy*)malloc(state->numEn*sizeof(Enemy));
     init_enemies(state);
@@ -37,8 +39,10 @@ void init_enemies(State* state){
     int n = 6;
     for (int i = 0; i < state->numEn; i++){
         state->enemies[i].hp = 0;
-        state->enemies[i].damage = random_number(get_current_room(state), 1, 3, n);
+        state->enemies[i].damage = random_number(get_current_room(state), 3, 5, n);
+        state->enemies[i].acc = random_number(get_current_room(state), 2, 6, n);
         state->enemies[i].current = state->dun->initialPos;
+        state->enemies[i].lastDir = ' ';
         n  = (n * 512 - 78) % 12 + 1;
     }
 }
@@ -87,22 +91,75 @@ int add_enemies(State* state){
     return TRUE;
 }
 
+void fight(State* state, Enemy* enemy)
+{
+    int m = 56;
+    printf("You are in front of a monster. What do you want to do?\n");
+
+    char option = '\0';
+    while (option != OPTION_FLEE) {
+
+        printf("\n");
+        printf( "%c. Attack\n",  OPTION_ATTACK);
+        printf( "%c. Heal\n",  OPTION_HEAL);
+        printf( "%c. Flee\n", OPTION_FLEE);
+        option = read_char_option("Choose an option: \n");
+
+        Room *room = get_room_at_position(state->dun, enemy->current);
+        int i = random_number(room, 0, state->agility + enemy->acc, m);
+
+        if (option == OPTION_FLEE){
+            if (i > state->agility){
+                 break;
+            }
+        } else if (option == OPTION_ATTACK) {
+            if (i > state->agility)
+            {
+                state->hp -= enemy->damage;
+                printf("You received %d damage, your health is %d.\n", enemy->damage, state->hp);
+            }
+            else 
+            {
+                printf("The monster missed!");
+            }
+            enemy->hp = enemy->hp - state->damage;
+        }
+        else if (option == OPTION_HEAL) {
+            if (state->healthPotions)
+            {
+                if (i > state->agility)
+                {
+                    state->hp += 6 - enemy->damage;
+                    printf("You received %d damage, your health is %d.\n", enemy->damage, state->hp);
+                }
+                else 
+                {
+                    state->hp += 6;
+                    printf("The monster missed!");
+                }
+                state->healthPotions--;
+            }
+        }
+        else {
+            printf("Invalid option!\n");
+        }
+        if (state->hp <= 0) {
+            printf("You encountered a monster and killed you\n");
+            break;
+        } else if (state->enemies[i].hp <= 0) {
+            printf("You have killed a monster!\n");
+            break;
+        }
+    }
+}
+
 void check_enemies(State* state){
     for (int i = 0; i < state->numEn; i++) {
         Enemy* enemy = &state->enemies[i];
         if (enemy->hp > 0) {
             if (state->current.row == enemy->current.row &&
                 state->current.column == enemy->current.column) {
-                while (state->hp > 0 && enemy->hp > 0) {
-                    state->hp = state->hp - enemy->damage;
-                    enemy->hp = enemy->hp - state->damage;
-                    printf("You received %d damage, your health is %d.\n", enemy->damage, state->hp);
-                }
-                if (state->hp <= 0) {
-                    printf("You encountered a monster and killed you\n");
-                } else if (state->enemies[i].hp <= 0) {
-                    printf("You have killed a monster!\n");
-                }
+                fight(state, enemy);
             } else {
                 Room *room = get_room_at_position(state->dun, state->enemies[i].current);
                 if (has_active_trap(room)) {
@@ -365,14 +422,23 @@ int move_monster(State* state) {
 
             int move = 1, i = random_number(room, 0, 3, m);
 
-            char direction = directions[i];
+            char direction = (state->enemies[j].lastDir != ' ') ? state->enemies[j].lastDir : directions[i];
             Wall *wall = get_wall(room, direction);
             get_move(direction, &position, move);
             if (has_door(wall)) {
                 if (is_valid_position(state->dun, position)) {
                     if (is_enabled(get_room_at_position(state->dun, position))) {
                         if (!has_open_door(wall)) {
-                            open_door_e(wall, get_room_at_position(state->dun, position), direction);
+                            if (state->enemies[j].inFrontDoor1turn){
+                                open_door_e(wall, get_room_at_position(state->dun, position), direction);
+                                state->enemies[j].inFrontDoor1turn = FALSE;
+                                state->enemies[j].lastDir = ' ';
+                            }
+                            else
+                            {
+                                state->enemies[j].inFrontDoor1turn++;
+                                state->enemies[j].lastDir = direction;
+                            }
                             return TRUE;
                         }
                         if ((position.row == prev_pos.row) && (position.column == prev_pos.column)) {
